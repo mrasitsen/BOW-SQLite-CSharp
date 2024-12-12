@@ -6,6 +6,7 @@ name: Build and Publish
 on:
   workflow_dispatch:
 
+
 jobs:
   build:
     permissions: write-all
@@ -36,7 +37,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: $NOW
+        tag_name: ${{ github.run_number }}
         release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
