@@ -42,7 +42,7 @@ jobs:
         draft: false
         prerelease: false
     - name: Echo current directory
-      run: ls ${{ github.workspace }}
+      run: ls ${{ github.workspace }}/rel
     - name: Upload Release Asset
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1
@@ -50,8 +50,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ${{ github.workspace }}/rel/Sqlite-Sharp.exe
-        asset_name: Sqlite-Sharp.exe
+        asset_path: ${{ github.workspace }}/rel/SQLite-Sharp.exe
+        asset_name: SQLite-Sharp.exe
         asset_content_type: exe
 
     # - name: Test
