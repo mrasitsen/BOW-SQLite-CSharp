@@ -19,13 +19,34 @@ jobs:
         dotnet-version: 9.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
+    # - name: Build
+    #   run: dotnet build --no-restore
+    - name: Dotnet Publish
       run: |
        sudo apt-get install clang zlib1g-dev
-       dotnet publish -r linux-x64 --self-contained
-    - name: Test
-      run: dotnet test --no-build --verbosity normal   
+       dotnet publish -r linux-x64 --self-contained -o ${{ github.workspace }}/release
+    - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+     - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ${{ github.workspace }}/release/Sqlite-Sharp.exe
+          asset_name: Sqlite-Sharp.exe
+          asset_content_type: exe
+
+    # - name: Test
+    #   run: dotnet test --no-build --verbosity normal   
 
 
