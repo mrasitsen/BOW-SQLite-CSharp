@@ -23,7 +23,7 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: |
-       sudo apt-get install clang zlib1g-dev \
+       sudo apt-get install clang zlib1g-dev
        dotnet publish -r linux-x64 --self-contained
     - name: Test
       run: dotnet test --no-build --verbosity normal   
