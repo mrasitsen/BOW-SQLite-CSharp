@@ -24,7 +24,8 @@ jobs:
     - name: Dotnet Publish
       run: |
        sudo apt-get install clang zlib1g-dev
-       dotnet publish -r linux-x64 --self-contained -o ${{ github.workspace }}/release
+       cd SQLite-Sharp
+       dotnet publish ${{ github.workspace }}/SQLite-Sharp -r linux-x64 --self-contained -o ${{ github.workspace }}/release
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
