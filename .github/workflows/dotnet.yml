@@ -30,7 +30,7 @@ jobs:
       run: |
        sudo apt-get install clang zlib1g-dev
        cd SQLite-Sharp
-       dotnet publish ${{ github.workspace }}/SQLite-Sharp --self-contained -o "${{env.GITHUB_WORKSPACE}}/rel"
+       dotnet publish ${{ github.workspace }}/SQLite-Sharp --self-contained -o "${{ github.workspace }}/rel"
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
