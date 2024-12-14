@@ -25,7 +25,7 @@ jobs:
       with:
         dotnet-version: 9.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ${{ env.PROJECT_NAME }}.csproj 
     - name: Build project
       run: dotnet build ${{ env.PROJECT_NAME }}.csproj --no-restore
     - name: Dotnet Publish
@@ -33,13 +33,12 @@ jobs:
         sudo apt-get install clang zlib1g-dev
         dotnet publish ${{ env.PROJECT_NAME }}.csproj --no-build --framework net9.0 --runtime linux-x64 --self-contained -o "./rel"
 
-    
   Build-Windows:
     permissions: write-all
     runs-on: windows-latest
     defaults:
       run:
-        working-directory: ./${{ env.PROJECT_NAME }}
+        working-directory: .\${{ env.PROJECT_NAME }}
 
     steps:
     - uses: actions/checkout@v4
