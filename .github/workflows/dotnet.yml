@@ -14,7 +14,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./SQLite-Sharp
+        # working-directory: ./SQLite-Sharp
 
     steps:
     - uses: actions/checkout@v4
@@ -22,8 +22,8 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-    # - name: Restore dependencies
-    #   run: dotnet restore
+    - name: Restore dependencies
+      run: dotnet restore
     - name: Dotnet Publish
       run: |
         sudo apt-get install clang zlib1g-dev
