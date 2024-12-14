@@ -8,7 +8,7 @@ on:
 
 
 jobs:
-  Build Linux:
+  Build-Linux:
     permissions: write-all
     runs-on: ubuntu-latest
     defaults:
@@ -26,9 +26,8 @@ jobs:
     #   run: dotnet restore
     - name: Dotnet Publish
       run: |
-       sudo apt-get install clang zlib1g-dev
-      #  cd SQLite-Sharp
-       dotnet publish --self-contained -o "./rel"
+        sudo apt-get install clang zlib1g-dev
+        dotnet publish --self-contained -o "./rel"
 
   
   # Build Windows:
