@@ -12,9 +12,9 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     defaults:
-    run:
-      shell: bash
-      working-directory: ./SQLite-Sharp
+      run:
+        shell: bash
+        working-directory: ./SQLite-Sharp
 
     steps:
     - uses: actions/checkout@v4
